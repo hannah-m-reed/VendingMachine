@@ -6,8 +6,9 @@ import java.util.*;
 
 public class VendingInventory{
     private static List<String> inventory = new ArrayList<>();
-    private static Map<String, Integer> inventoryQuantities = new HashMap<>();
     private static File inventoryFile = new File("vendingmachine.csv");
+    private static Map<String, Integer> inventoryQuantities = new HashMap<>();
+
 
     public static String[][] getInventory(){
         String[][] item = new String[16][4];
