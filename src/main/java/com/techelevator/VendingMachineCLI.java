@@ -4,6 +4,9 @@ import com.techelevator.view.Menu;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Map;
+
+import static java.lang.Integer.parseInt;
 
 public class VendingMachineCLI {
 
@@ -33,10 +36,21 @@ public class VendingMachineCLI {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				System.out.println(Arrays.toString(item.getItemMap().get("A1")));
-				System.out.println(item.getItemMap().get("A1")[1]);
+//				for(Map.Entry<String, String[]> element: item.getItemMap().entrySet()){
+//					System.out.printf("%s %s %s %s", element.getKey(), element.getValue()[1], element.getValue()[2], element.getValue()[4] + "\n");
+//				}
+				item.updateInventory("A1", 1);
+				for(int i = 0; i < item.getItem().length; i++) {
+					String list = "";
+					for (int k = 0; k < item.getItem()[i].length - 2; k++) {
+						list += item.getItem()[i][k] + " ";
+					}
 
-			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+					System.out.printf("%s Quantity Remaining: %s", list, item.getItemMap().get("A1")[4] +"\n");
+				}
+
+
+				} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			}
 		}
