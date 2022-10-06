@@ -17,7 +17,6 @@ public class VendingMachineCLI {
 	private Menu menu;
 
 	public static void main(String[] args) throws FileNotFoundException {
-		Item item = new Item();
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
@@ -30,7 +29,6 @@ public class VendingMachineCLI {
 	public void run() {
 
 		VendingMachine vendingMachine = new VendingMachine();
-		Item item = new Item();
 		  //===== you nay use/modify the existing Menu class or write your own ======
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -39,17 +37,10 @@ public class VendingMachineCLI {
 //				for(Map.Entry<String, String[]> element: item.getItemMap().entrySet()){
 //					System.out.printf("%s %s %s %s", element.getKey(), element.getValue()[1], element.getValue()[2], element.getValue()[4] + "\n");
 //				}
-				item.updateInventory("A1", 1);
-				for(int i = 0; i < item.getItem().length; i++) {
-					String list = "";
-					for (int k = 0; k < item.getItem()[i].length - 2; k++) {
-						list += item.getItem()[i][k] + " ";
-					}
-
-					System.out.printf("%s Quantity Remaining: %s", list, item.getItemMap().get("A1")[4] +"\n");
+				for(int i = 0; i < vendingMachine.getFileContents().size(); i++) {
+					System.out.println(vendingMachine.getFileContents().get(i));
+					System.out.println(vendingMachine.getItemList()[i]);
 				}
-
-
 				} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			}
