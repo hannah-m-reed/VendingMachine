@@ -5,9 +5,10 @@ import java.util.List;
 
 public class VendingMachine {
     private ChangeSorter changeSorter;
+    private Item item;
 
     public VendingMachine() {
         this.changeSorter = new ChangeSorter();
-        VendingInventory.inventorySetup();
+        this.item = new Item();
     }
 }
