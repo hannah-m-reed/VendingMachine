@@ -32,12 +32,12 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 
-				for(int i = 0; i < vendingMachine.getInventory().length; i++){
+				for(int i = 0; i < VendingInventory.getInventory().length; i++){
 					String list = "";
-					for(int k = 0; k < vendingMachine.getInventory()[i].length - 1; k++){
-						list += vendingMachine.getInventory()[i][k] + " ";
+					for(int k = 0; k < VendingInventory.getInventory()[i].length - 1; k++){
+						list += VendingInventory.getInventory()[i][k] + " ";
 					}
-					System.out.println(list);
+					System.out.println(list + " current quantity: " + VendingInventory.getInventoryQuantities().get(VendingInventory.getInventory()[i][0]));
 				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
