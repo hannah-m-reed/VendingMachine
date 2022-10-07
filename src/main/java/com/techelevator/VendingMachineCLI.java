@@ -38,8 +38,12 @@ public class VendingMachineCLI {
 //					System.out.printf("%s %s %s %s", element.getKey(), element.getValue()[1], element.getValue()[2], element.getValue()[4] + "\n");
 //				}
 				for(int i = 0; i < vendingMachine.getFileContents().size(); i++) {
-					System.out.println(vendingMachine.getFileContents().get(i));
-					System.out.println(vendingMachine.getItemList()[i]);
+					String list = "";
+					//System.out.println(vendingMachine.getFileContents().get(i));
+					for(int k = 0; k < 3; k++) {
+						list += vendingMachine.getItemList()[i][k] + " ";
+					}
+					System.out.println(list);
 				}
 				} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase

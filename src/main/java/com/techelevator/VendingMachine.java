@@ -3,22 +3,19 @@ package com.techelevator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class VendingMachine {
     private ChangeSorter changeSorter;
     private List<String> fileContents = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
-    private String[][] itemList = new String[fileContents.size()][4];
+    private Map<String, String[]> vendingOptions = new HashMap<>();
+    private String[][] itemList = new String[16][4];
     private File fileInput = new File("vendingmachine.csv");
 
     public VendingMachine() {
         this.changeSorter = new ChangeSorter();
-
         this.machineSetup();
-
     }
     private void machineSetup(){
         try(Scanner inputStream = new Scanner(fileInput)){
@@ -28,6 +25,7 @@ public class VendingMachine {
             }
             for(int i = 0; i < fileContents.size(); i++){
                 itemList[i] = fileContents.get(i).split("\\|");
+                vendingOptions.put(fileContents.get(i).substring(0,2), fileContents.get(i).substring(3).split("\\|"));
             }
         }catch(FileNotFoundException e){
             System.out.println("File not found " + e.getMessage());
