@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class MoneyBox {
     private BigDecimal currentMoney = new BigDecimal(0);
@@ -48,5 +49,8 @@ public class MoneyBox {
             System.out.println("Insufficient funds");
             return false;
         }
+    }
+    public void resetCurrentMoney(){
+        this.currentMoney = new BigDecimal(BigInteger.valueOf(0));
     }
 }

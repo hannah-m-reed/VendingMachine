@@ -53,7 +53,10 @@ public class VendingMachineCLI {
 					} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						displayMenuItems();
 						customerChoice();
-					} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {break;}
+					} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
+						vendingMachine.moneyBox.resetCurrentMoney();
+						updateCurrentMoney();
+						break;}
 				}
 			}
 		}
@@ -105,6 +108,9 @@ public class VendingMachineCLI {
 								System.out.println(vendingMachine.vendingInventory.getItems().get(i).getPhrase());
 							}
 						}
+					}else{
+						System.out.println();
+						System.out.println("Insufficient funds"); //noting for later
 					}
 				}
 			}else{
