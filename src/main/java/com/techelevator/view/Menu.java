@@ -1,5 +1,7 @@
 package com.techelevator.view;
 
+import com.techelevator.VendingMachineCLI;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -44,6 +46,10 @@ public class Menu {
 	}
 
 	private void displayMenuOptions(Object[] options) {
+//		if(options == ){
+//			System.out.println("Current Money Provided: $ " +);
+//		}
+
 		out.println();
 		for (int i = 0; i < options.length; i++) {
 			int optionNum = i + 1;

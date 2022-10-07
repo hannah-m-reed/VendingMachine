@@ -8,9 +8,24 @@ public class MoneyBox {
     public MoneyBox(){
 
     }
-    public BigDecimal feedMoney(){
-        this.currentMoney.add(BigDecimal.valueOf(1.00));
-        return currentMoney;
+    public boolean feedMoney(BigDecimal money){
+
+
+        if(money.equals(BigDecimal.valueOf(10))) {
+            BigDecimal result = this.currentMoney.add(money);
+            this.currentMoney = result;
+            return true;
+        }else if (money.equals(BigDecimal.valueOf(5))) {
+            BigDecimal result = this.currentMoney.add(money);
+            this.currentMoney = result;
+            return true;
+        }else if (money.equals(BigDecimal.valueOf(1))) {
+            BigDecimal result = this.currentMoney.add(money);
+            this.currentMoney = result;
+            return true;
+        }else{
+            return false;
+        }
     }
     public String getCorrectChange(){
         String changeReturned = "";
@@ -18,5 +33,9 @@ public class MoneyBox {
 
         }
         return changeReturned;
+    }
+
+    public BigDecimal getCurrentMoney() {
+        return currentMoney;
     }
 }

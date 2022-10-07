@@ -45,15 +45,15 @@ public class VendingInventory {
         }
     }
     private void stockInventory(){
-        for(Map.Entry<String, String[]> item: vendingOptions.entrySet()) {
-            if (item.getValue()[2].equals("Candy")) {
-                items.add(new Candy(item.getValue()[0], Double.parseDouble(item.getValue()[1])));
-            } else if (item.getValue()[2].equals("Chip")) {
-                items.add(new Chip(item.getValue()[0], Double.parseDouble(item.getValue()[1])));
-            } else if (item.getValue()[2].equals("Drink")) {
-                items.add(new Drink(item.getValue()[0], Double.parseDouble(item.getValue()[1])));
-            } else if (item.getValue()[2].equals("Gum")) {
-                items.add(new Gum(item.getValue()[0], Double.parseDouble(item.getValue()[1])));
+        for(int i = 0; i < itemList.length; i++) {
+            if (itemList[i][3].equals("Candy")) {
+                items.add(new Candy(itemList[i][1], Double.parseDouble(itemList[i][2])));
+            } else if (itemList[i][3].equals("Chip")) {
+                items.add(new Chip(itemList[i][1], Double.parseDouble(itemList[i][2])));
+            } else if (itemList[i][3].equals("Drink")) {
+                items.add(new Drink(itemList[i][1], Double.parseDouble(itemList[i][2])));
+            } else if (itemList[i][3].equals("Gum")) {
+                items.add(new Gum(itemList[i][1], Double.parseDouble(itemList[i][2])));
             }
         }
 
