@@ -1,11 +1,14 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Chip extends Item{
     String phrase = "Crunch Crunch, Yum!";
-    public Chip(String name, double price) {
+    public Chip(String name, BigDecimal price) {
         super(name, price);
     }
 
+    @Override
     public String getPhrase() {
         return phrase;
     }

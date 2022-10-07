@@ -1,10 +1,14 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Candy extends Item{
     String phrase = "Munch Munch, Yum!";
-    public Candy(String name, double price) {
+    public Candy(String name, BigDecimal price) {
         super(name, price);
     }
+
+    @Override
     public String getPhrase() {
         return phrase;
     }

@@ -38,4 +38,15 @@ public class MoneyBox {
     public BigDecimal getCurrentMoney() {
         return currentMoney;
     }
+
+    public boolean setCurrentMoney(BigDecimal currentMoney) {
+        if(this.currentMoney.subtract(currentMoney).compareTo(BigDecimal.valueOf(0)) >= 0) {
+            BigDecimal result = this.currentMoney.subtract(currentMoney);
+            this.currentMoney = result;
+            return true;
+        }else{
+            System.out.println("Insufficient funds");
+            return false;
+        }
+    }
 }

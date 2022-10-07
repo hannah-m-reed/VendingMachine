@@ -5,6 +5,7 @@ import com.techelevator.VendingMachineCLI;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Menu {
@@ -21,6 +22,15 @@ public class Menu {
 		Object choice = null;
 		while (choice == null) {
 			displayMenuOptions(options);
+			choice = getChoiceFromUserInput(options);
+		}
+		return choice;
+	}
+
+	public Object getChoiceFromOptions(Object[] options, BigDecimal currentMoney) {
+		Object choice = null;
+		while (choice == null) {
+			displayMenuOptions(options, currentMoney);
 			choice = getChoiceFromUserInput(options);
 		}
 		return choice;
@@ -46,9 +56,18 @@ public class Menu {
 	}
 
 	private void displayMenuOptions(Object[] options) {
-//		if(options == ){
-//			System.out.println("Current Money Provided: $ " +);
-//		}
+
+		out.println();
+		for (int i = 0; i < options.length; i++) {
+			int optionNum = i + 1;
+			out.println(optionNum + ") " + options[i]);
+		}
+		out.print(System.lineSeparator() + "Please choose an option >>> ");
+		out.flush();
+	}
+	private void displayMenuOptions(Object[] options, BigDecimal currentMoney) {
+		System.out.println();
+		System.out.println("Current Money Provided: $" + currentMoney);
 
 		out.println();
 		for (int i = 0; i < options.length; i++) {

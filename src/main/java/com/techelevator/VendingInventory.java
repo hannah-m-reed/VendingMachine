@@ -8,8 +8,7 @@ import java.util.*;
 public class VendingInventory {
 
     private List<String> fileContents = new ArrayList<>();
-    private List<Item> items = new ArrayList<>();
-    private Map<String, String[]> vendingOptions = new HashMap<>();
+    private List<Item> vendingMachineContents = new ArrayList<>();
     private String[][] itemList = new String[16][4];
     private File fileInput = new File("vendingmachine.csv");
 
@@ -26,19 +25,13 @@ public class VendingInventory {
     public String[][] getItemList() {
         return itemList;
     }
-
-    public Map<String, String[]> getVendingOptions() {
-        return vendingOptions;
-    }
     private void setLists(){
         try(Scanner inputStream = new Scanner(fileInput)){
             while(inputStream.hasNextLine()){
                 fileContents.add(inputStream.nextLine());
-                //items.add(new Item());
             }
             for(int i = 0; i < fileContents.size(); i++){
                 itemList[i] = fileContents.get(i).split("\\|");
-                vendingOptions.put(fileContents.get(i).substring(0,2), fileContents.get(i).substring(3).split("\\|"));
             }
         }catch(FileNotFoundException e){
             System.out.println("File not found " + e.getMessage());
@@ -47,20 +40,19 @@ public class VendingInventory {
     private void stockInventory(){
         for(int i = 0; i < itemList.length; i++) {
             if (itemList[i][3].equals("Candy")) {
-                items.add(new Candy(itemList[i][1], Double.parseDouble(itemList[i][2])));
+                vendingMachineContents.add(new Candy(itemList[i][1], BigDecimal.valueOf(Double.parseDouble(itemList[i][2]))));
             } else if (itemList[i][3].equals("Chip")) {
-                items.add(new Chip(itemList[i][1], Double.parseDouble(itemList[i][2])));
+                vendingMachineContents.add(new Chip(itemList[i][1], BigDecimal.valueOf(Double.parseDouble(itemList[i][2]))));
             } else if (itemList[i][3].equals("Drink")) {
-                items.add(new Drink(itemList[i][1], Double.parseDouble(itemList[i][2])));
+                vendingMachineContents.add(new Drink(itemList[i][1], BigDecimal.valueOf(Double.parseDouble(itemList[i][2]))));
             } else if (itemList[i][3].equals("Gum")) {
-                items.add(new Gum(itemList[i][1], Double.parseDouble(itemList[i][2])));
+                vendingMachineContents.add(new Gum(itemList[i][1], BigDecimal.valueOf(Double.parseDouble(itemList[i][2]))));
             }
         }
-
     }
 
     public List<Item> getItems(){
-        return this.items;
+        return this.vendingMachineContents;
     }
 }
 
