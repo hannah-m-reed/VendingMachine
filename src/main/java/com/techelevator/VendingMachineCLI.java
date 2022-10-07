@@ -10,7 +10,8 @@ public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
+	private static final String MAIN_MENU_EXIT = "Exit";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT};
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
@@ -54,10 +55,12 @@ public class VendingMachineCLI {
 						displayMenuItems();
 						customerChoice();
 					} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
-						vendingMachine.moneyBox.resetCurrentMoney();
+						vendingMachine.moneyBox.changeReturn();
 						updateCurrentMoney();
 						break;}
 				}
+			} else if (choice.equals(MAIN_MENU_EXIT)) {
+				System.exit(0);
 			}
 		}
 	}
@@ -72,7 +75,7 @@ public class VendingMachineCLI {
 				System.out.println("Please enter valid amount");
 			}
 			System.out.print("Would you like to continue adding money? (Y/N): ");
-			continueInput = input.nextLine();
+			continueInput = input.nextLine().toUpperCase();
 		}
 	}
 
@@ -91,26 +94,20 @@ public class VendingMachineCLI {
 	}
 	public void customerChoice(){
 		System.out.print("Please enter a choice: ");
-		String customerChoice = input.nextLine();
+		System.out.println();
+		String customerChoice = input.nextLine().toUpperCase();
 		String choices = "";
 		for(int i = 0; i < vendingMachine.vendingInventory.getItemList().length; i++) {
-			choices += vendingMachine.vendingInventory.getItemList()[i][0];
+			choices += (vendingMachine.vendingInventory.getItemList()[i][0]) + " ";
 		}
 		for(int i = 0; i < vendingMachine.vendingInventory.getItemList().length; i++) {
 			if (choices.contains(customerChoice)) {
 				if (customerChoice.equals(vendingMachine.vendingInventory.getItemList()[i][0])) {
-					if (vendingMachine.moneyBox.getCurrentMoney().compareTo(vendingMachine.vendingInventory.getItems().get(i).getPrice()) >= 0) {
+					if (vendingMachine.moneyBox.setCurrentMoney(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
 						//decrement quantity
 						if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
-							//update balance
-							if (vendingMachine.moneyBox.setCurrentMoney(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
-								//print phrase
-								System.out.println(vendingMachine.vendingInventory.getItems().get(i).getPhrase());
-							}
+							System.out.println(vendingMachine.vendingInventory.getItems().get(i).getPhrase());
 						}
-					}else{
-						System.out.println();
-						System.out.println("Insufficient funds"); //noting for later
 					}
 				}
 			}else{

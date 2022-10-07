@@ -46,11 +46,42 @@ public class MoneyBox {
             this.currentMoney = result;
             return true;
         }else{
+            System.out.println();
             System.out.println("Insufficient funds");
             return false;
         }
     }
-    public void resetCurrentMoney(){
-        this.currentMoney = new BigDecimal(BigInteger.valueOf(0));
+    public void changeReturn(){
+        double quarters = 0;
+        double dimes = 0;
+        double nickels = 0;
+        BigDecimal result;
+
+        while(this.currentMoney.compareTo(BigDecimal.valueOf(0)) > 0){
+
+            if(this.currentMoney.compareTo(BigDecimal.valueOf(0.25)) >= 0){
+                result = this.currentMoney.divide(BigDecimal.valueOf(0.25));
+                quarters = Math.floor(result.doubleValue());
+                result = (result.subtract(BigDecimal.valueOf(quarters))).multiply(BigDecimal.valueOf(0.25));
+                currentMoney = result;
+
+            } else if (this.currentMoney.compareTo(BigDecimal.valueOf(.1)) >= 0) {
+                result = this.currentMoney.divide(BigDecimal.valueOf(0.1));
+                dimes = Math.floor(result.doubleValue());
+                result = (result.subtract(BigDecimal.valueOf(dimes))).multiply(BigDecimal.valueOf(0.1));
+                currentMoney = result;
+
+            } else if (this.currentMoney.compareTo(BigDecimal.valueOf(0.05)) >= 0) {
+                result = this.currentMoney.divide(BigDecimal.valueOf(0.05));
+                nickels = Math.floor(result.doubleValue());
+                result = (result.subtract(BigDecimal.valueOf(nickels))).multiply(BigDecimal.valueOf(0.05));
+                currentMoney = result;
+
+            }
+
+        }
+        System.out.println();
+        System.out.printf("Your change is Quarters: %.0f Dimes: %.0f Nickels: %.0f", quarters, dimes, nickels);
+        System.out.println();
     }
 }
