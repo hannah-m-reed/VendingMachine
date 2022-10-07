@@ -48,7 +48,12 @@ public class VendingMachineCLI {
 					updateCurrentMoney();
 					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS, currentMoney);
 					if (choice2.equals(PURCHASE_MENU_FEED_MONEY)) {
-						vendingMachine.createLogFile("FEED MONEY: ", customerMoneyInput());
+						try {
+							vendingMachine.createLogFile("FEED MONEY: ", customerMoneyInput());
+						}catch(NumberFormatException e){
+							System.out.println();
+							System.out.println("Please enter provided integers");
+						}
 					} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						displayMenuItems();
 						customerChoice();
