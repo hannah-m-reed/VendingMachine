@@ -2,10 +2,10 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public class ChangeSorter {
+public class MoneyBox {
     private BigDecimal currentMoney = new BigDecimal(0);
 
-    public ChangeSorter(){
+    public MoneyBox(){
 
     }
     public BigDecimal feedMoney(){

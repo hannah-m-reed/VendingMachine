@@ -2,11 +2,10 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.math.BigDecimal;
 import java.util.*;
 
 public class VendingMachine {
-    private ChangeSorter changeSorter;
+    private MoneyBox changeSorter;
     private List<String> fileContents = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
     private Map<String, String[]> vendingOptions = new HashMap<>();
@@ -14,7 +13,7 @@ public class VendingMachine {
     private File fileInput = new File("vendingmachine.csv");
 
     public VendingMachine() {
-        this.changeSorter = new ChangeSorter();
+        this.changeSorter = new MoneyBox();
         this.machineSetup();
     }
     private void machineSetup(){
