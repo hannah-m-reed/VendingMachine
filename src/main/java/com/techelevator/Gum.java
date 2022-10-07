@@ -9,4 +9,18 @@ public class Gum extends Item{
     public String getPhrase() {
         return phrase;
     }
+
+    @Override
+    public int getQuantity() {
+        return super.getQuantity();
+    }
+
+    @Override
+    public String toString() {
+        return "Gum{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

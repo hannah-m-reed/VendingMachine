@@ -37,15 +37,19 @@ public class VendingMachineCLI {
 //				for(Map.Entry<String, String[]> element: item.getItemMap().entrySet()){
 //					System.out.printf("%s %s %s %s", element.getKey(), element.getValue()[1], element.getValue()[2], element.getValue()[4] + "\n");
 //				}
-				for(int i = 0; i < vendingMachine.getFileContents().size(); i++) {
+				for (int i = 0; i < vendingMachine.vendingInventory.getFileContents().size(); i++) {
 					String list = "";
 					//System.out.println(vendingMachine.getFileContents().get(i));
-					for(int k = 0; k < 3; k++) {
-						list += vendingMachine.getItemList()[i][k] + " ";
+					for (int k = 0; k < 3; k++) {
+						list += vendingMachine.vendingInventory.getItemList()[i][k] + " ";
 					}
-					System.out.println(list);
+					System.out.println(list + "Quantity: " + vendingMachine.vendingInventory.getItems().get(i).getQuantity());
+
 				}
-				} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+				for(Item item: vendingMachine.vendingInventory.getItems()){
+					System.out.println(item.toString());
+				}
+			}else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			}
 		}

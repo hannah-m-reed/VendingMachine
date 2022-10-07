@@ -9,4 +9,18 @@ public class Chip extends Item{
     public String getPhrase() {
         return phrase;
     }
+
+    @Override
+    public int getQuantity() {
+        return super.getQuantity();
+    }
+
+    @Override
+    public String toString() {
+        return "Chip{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
