@@ -67,7 +67,7 @@ public class Menu {
 	}
 	private void displayMenuOptions(Object[] options, BigDecimal currentMoney) {
 		System.out.println();
-		System.out.println("Current Money Provided: $" + currentMoney);
+		System.out.printf("Current Money Provided: $%.2f\n", currentMoney);
 
 		out.println();
 		for (int i = 0; i < options.length; i++) {

@@ -47,16 +47,13 @@ public class VendingMachineCLI {
 				while(true) {
 					updateCurrentMoney();
 					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS, currentMoney);
-					BigDecimal currentMoney = vendingMachine.moneyBox.getCurrentMoney();
-					//System.out.println("Current Money Provided: $" + currentMoney);
 					if (choice2.equals(PURCHASE_MENU_FEED_MONEY)) {
-						customerMoneyInput();
+						vendingMachine.createLogFile("FEED MONEY: ", customerMoneyInput());
 					} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						displayMenuItems();
 						customerChoice();
 					} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
-						vendingMachine.moneyBox.changeReturn();
-						updateCurrentMoney();
+						vendingMachine.createLogFile("GIVE CHANGE: ", vendingMachine.moneyBox.changeReturn());
 						break;}
 				}
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
@@ -64,19 +61,17 @@ public class VendingMachineCLI {
 			}
 		}
 	}
-	public void customerMoneyInput(){
-		String continueInput = "Y";
-		while(continueInput.equals("Y")) {
-			System.out.print("How much money would you like to put in? (1, 5, 10): ");
-			BigDecimal customerInput = BigDecimal.valueOf(Integer.parseInt(input.nextLine()));
-			if (vendingMachine.moneyBox.feedMoney(customerInput)) {
+	public BigDecimal customerMoneyInput(){
+		BigDecimal customerInput;
 
-			} else {
-				System.out.println("Please enter valid amount");
+			System.out.print("How much money would you like to put in? (1, 5, 10): ");
+			customerInput = BigDecimal.valueOf(Integer.parseInt(input.nextLine()));
+			if (vendingMachine.moneyBox.feedMoney(customerInput)) {
+				//this is empty
+			}else{
+				System.out.println("Please enter a valid amount");
 			}
-			System.out.print("Would you like to continue adding money? (Y/N): ");
-			continueInput = input.nextLine().toUpperCase();
-		}
+		return customerInput;
 	}
 
 	public void updateCurrentMoney(){
@@ -94,8 +89,8 @@ public class VendingMachineCLI {
 	}
 	public void customerChoice(){
 		System.out.print("Please enter a choice: ");
-		System.out.println();
 		String customerChoice = input.nextLine().toUpperCase();
+		System.out.println();
 		String choices = "";
 		for(int i = 0; i < vendingMachine.vendingInventory.getItemList().length; i++) {
 			choices += (vendingMachine.vendingInventory.getItemList()[i][0]) + " ";
@@ -106,6 +101,7 @@ public class VendingMachineCLI {
 					if (vendingMachine.moneyBox.setCurrentMoney(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
 						//decrement quantity
 						if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
+							vendingMachine.createLogFile(vendingMachine.vendingInventory.getItems().get(i).getName() + " " + vendingMachine.vendingInventory.getItemList()[i][0], vendingMachine.vendingInventory.getItems().get(i).getPrice());
 							System.out.println(vendingMachine.vendingInventory.getItems().get(i).getPhrase());
 						}
 					}

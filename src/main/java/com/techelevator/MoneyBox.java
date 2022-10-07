@@ -51,10 +51,11 @@ public class MoneyBox {
             return false;
         }
     }
-    public void changeReturn(){
+    public BigDecimal changeReturn(){
         double quarters = 0;
         double dimes = 0;
         double nickels = 0;
+        BigDecimal changeReturned = this.currentMoney;
         BigDecimal result;
 
         while(this.currentMoney.compareTo(BigDecimal.valueOf(0)) > 0){
@@ -83,5 +84,6 @@ public class MoneyBox {
         System.out.println();
         System.out.printf("Your change is Quarters: %.0f Dimes: %.0f Nickels: %.0f", quarters, dimes, nickels);
         System.out.println();
+        return changeReturned;
     }
 }
