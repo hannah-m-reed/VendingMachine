@@ -74,7 +74,8 @@ public class VendingMachineCLI {
 			if (vendingMachine.moneyBox.feedMoney(customerInput)) {
 				//this is empty
 			}else{
-				System.out.println("Please enter a valid amount");
+				System.out.println();
+				System.out.println("Please enter 1, 5, or 10");
 			}
 		return customerInput;
 	}
@@ -117,7 +118,6 @@ public class VendingMachineCLI {
 					}
 				}
 			} else {
-				System.out.println();
 				System.out.println("Item does not exist");
 				break;
 			}
