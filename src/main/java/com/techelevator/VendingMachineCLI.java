@@ -11,7 +11,8 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_EXIT = "Exit";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT};
+	private static final String MAIN_MENU_SALES_REPORT = "Generate Sales Receipt";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT, MAIN_MENU_SALES_REPORT};
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
@@ -59,6 +60,9 @@ public class VendingMachineCLI {
 				}
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
 				System.exit(0);
+			} else if (choice.equals(MAIN_MENU_SALES_REPORT)) {
+				vendingMachine.generateSalesReceipt();
+				System.exit(0);
 			}
 		}
 	}
@@ -101,10 +105,8 @@ public class VendingMachineCLI {
 		for(int i = 0; i < vendingMachine.vendingInventory.getItemList().length; i++) {
 			if (choices.contains(customerChoice)) {
 				if (customerChoice.equals(vendingMachine.vendingInventory.getItemList()[i][0])) {
-					//update current money
-					if (vendingMachine.moneyBox.makePurchase(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
-						//decrement quantity
-						if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
+					if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
+						if (vendingMachine.moneyBox.makePurchase(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
 							vendingMachine.createLogFile(vendingMachine.vendingInventory.getItems().get(i).getName() + " " + vendingMachine.vendingInventory.getItemList()[i][0], vendingMachine.vendingInventory.getItems().get(i).getPrice());
 							System.out.println(vendingMachine.vendingInventory.getItems().get(i).getPhrase());
 						}
