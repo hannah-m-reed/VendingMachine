@@ -15,13 +15,11 @@ public class VendingMachineCLI {
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
 	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
-
 	private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_FEED_MONEY, PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION};
 
 	private Menu menu;
 	Scanner input = new Scanner(System.in);
 	VendingMachine vendingMachine = new VendingMachine();
-
 	BigDecimal currentMoney = vendingMachine.moneyBox.getCurrentMoney();
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -36,11 +34,8 @@ public class VendingMachineCLI {
 
 	public void run() {
 
-
-		  //===== you nay use/modify the existing Menu class or write your own ======
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				displayMenuItems();
 			}else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
@@ -59,16 +54,17 @@ public class VendingMachineCLI {
 						customerChoice();
 					} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 						vendingMachine.createLogFile("GIVE CHANGE: ", vendingMachine.moneyBox.changeReturn());
-						break;}
+						break;
+					}
 				}
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
 				System.exit(0);
 			}
 		}
 	}
+
 	public BigDecimal customerMoneyInput(){
 		BigDecimal customerInput;
-
 			System.out.print("How much money would you like to put in? (1, 5, 10): ");
 			customerInput = BigDecimal.valueOf(Integer.parseInt(input.nextLine()));
 			if (vendingMachine.moneyBox.feedMoney(customerInput)) {
@@ -83,6 +79,7 @@ public class VendingMachineCLI {
 		BigDecimal result = vendingMachine.moneyBox.getCurrentMoney();
 		currentMoney = result;
 	}
+
 	public void displayMenuItems(){
 		for (int i = 0; i < vendingMachine.vendingInventory.getFileContents().size(); i++) {
 			String list = "";
@@ -93,6 +90,7 @@ public class VendingMachineCLI {
 		}
 	}
 	public void customerChoice(){
+		System.out.println();
 		System.out.print("Please enter a choice: ");
 		String customerChoice = input.nextLine().toUpperCase();
 		System.out.println();
@@ -103,6 +101,7 @@ public class VendingMachineCLI {
 		for(int i = 0; i < vendingMachine.vendingInventory.getItemList().length; i++) {
 			if (choices.contains(customerChoice)) {
 				if (customerChoice.equals(vendingMachine.vendingInventory.getItemList()[i][0])) {
+					//update current money
 					if (vendingMachine.moneyBox.setCurrentMoney(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
 						//decrement quantity
 						if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
@@ -111,7 +110,7 @@ public class VendingMachineCLI {
 						}
 					}
 				}
-			}else{
+			} else {
 				System.out.println("Item does not exist");
 				break;
 			}

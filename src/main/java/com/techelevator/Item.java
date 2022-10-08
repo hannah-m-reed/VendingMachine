@@ -11,28 +11,30 @@ public abstract class Item{
     String name;
     BigDecimal price;
     int quantity;
-
     String phrase = "";
 
+    //constructor
     public Item(String name, BigDecimal price){
         this.name = name;
         this.price = price;
         this.quantity = 5;
     }
 
-
-
+    //getters
     public String getName() {
         return name;
     }
-
     public BigDecimal getPrice() {
         return price;
     }
     public int getQuantity() {
         return quantity;
     }
+    public String getPhrase() {
+        return phrase;
+    }
 
+    //setters
     public boolean setQuantity(){
         if(this.quantity > 0) {
             this.quantity--;
@@ -42,7 +44,5 @@ public abstract class Item{
             return false;
         }
     }
-    public String getPhrase() {
-        return phrase;
-    }
+
 }

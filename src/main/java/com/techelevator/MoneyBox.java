@@ -9,9 +9,8 @@ public class MoneyBox {
     public MoneyBox(){
 
     }
+
     public boolean feedMoney(BigDecimal money){
-
-
         if(money.equals(BigDecimal.valueOf(10))) {
             BigDecimal result = this.currentMoney.add(money);
             this.currentMoney = result;
@@ -28,13 +27,6 @@ public class MoneyBox {
             return false;
         }
     }
-    public String getCorrectChange(){
-        String changeReturned = "";
-        if(currentMoney.remainder(BigDecimal.valueOf(1)).compareTo(BigDecimal.valueOf(1)) >= 0){
-
-        }
-        return changeReturned;
-    }
 
     public BigDecimal getCurrentMoney() {
         return currentMoney;
@@ -46,7 +38,6 @@ public class MoneyBox {
             this.currentMoney = result;
             return true;
         }else{
-            System.out.println();
             System.out.println("Insufficient funds");
             return false;
         }
