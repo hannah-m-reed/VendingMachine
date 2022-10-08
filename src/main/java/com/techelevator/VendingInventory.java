@@ -15,7 +15,6 @@ public class VendingInventory {
     public VendingInventory(){
         setLists();
         stockInventory();
-
     }
 
     public List<String> getFileContents() {
@@ -25,6 +24,7 @@ public class VendingInventory {
     public String[][] getItemList() {
         return itemList;
     }
+
     private void setLists(){
         try(Scanner inputStream = new Scanner(fileInput)){
             while(inputStream.hasNextLine()){
@@ -37,6 +37,7 @@ public class VendingInventory {
             System.out.println("File not found " + e.getMessage());
         }
     }
+
     private void stockInventory(){
         for(int i = 0; i < itemList.length; i++) {
             if (itemList[i][3].equals("Candy")) {

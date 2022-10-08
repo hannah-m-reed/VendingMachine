@@ -102,7 +102,7 @@ public class VendingMachineCLI {
 			if (choices.contains(customerChoice)) {
 				if (customerChoice.equals(vendingMachine.vendingInventory.getItemList()[i][0])) {
 					//update current money
-					if (vendingMachine.moneyBox.setCurrentMoney(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
+					if (vendingMachine.moneyBox.makePurchase(vendingMachine.vendingInventory.getItems().get(i).getPrice())) {
 						//decrement quantity
 						if (vendingMachine.vendingInventory.getItems().get(i).setQuantity()) {
 							vendingMachine.createLogFile(vendingMachine.vendingInventory.getItems().get(i).getName() + " " + vendingMachine.vendingInventory.getItemList()[i][0], vendingMachine.vendingInventory.getItems().get(i).getPrice());

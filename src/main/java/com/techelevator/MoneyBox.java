@@ -1,7 +1,6 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public class MoneyBox {
     private BigDecimal currentMoney = new BigDecimal(0);
@@ -32,7 +31,7 @@ public class MoneyBox {
         return currentMoney;
     }
 
-    public boolean setCurrentMoney(BigDecimal currentMoney) {
+    public boolean makePurchase(BigDecimal currentMoney) {
         if(this.currentMoney.subtract(currentMoney).compareTo(BigDecimal.valueOf(0)) >= 0) {
             BigDecimal result = this.currentMoney.subtract(currentMoney);
             this.currentMoney = result;
