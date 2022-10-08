@@ -90,7 +90,11 @@ public class VendingMachineCLI {
 			for (int k = 0; k < 3; k++) {
 				list += vendingMachine.vendingInventory.getItemList()[i][k] + " ";
 			}
-			System.out.println(list + "Quantity: " + vendingMachine.vendingInventory.getItems().get(i).getQuantity());
+			if(vendingMachine.vendingInventory.getItems().get(i).getQuantity() > 0) {
+				System.out.println(list + "Quantity: " + vendingMachine.vendingInventory.getItems().get(i).getQuantity());
+			} else if (vendingMachine.vendingInventory.getItems().get(i).getQuantity() <= 0) {
+				System.out.println(list + " **SOLD OUT**");
+			}
 		}
 	}
 	public void customerChoice(){
