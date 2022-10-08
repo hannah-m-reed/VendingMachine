@@ -117,6 +117,7 @@ public class VendingMachineCLI {
 					}
 				}
 			} else {
+				System.out.println();
 				System.out.println("Item does not exist");
 				break;
 			}
