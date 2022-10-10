@@ -12,11 +12,11 @@ public class VendingInventory {
     private String[][] itemList = new String[16][4];
     private File fileInput = new File("vendingmachine.csv");
 
+    //VendingInventory constructor calls setList to make a list of items from vendingmachine.csv and calls a method that stocks inventory from that list
     public VendingInventory(){
         setLists();
         stockInventory();
     }
-
     public List<String> getFileContents() {
         return fileContents;
     }
@@ -25,11 +25,13 @@ public class VendingInventory {
         return itemList;
     }
 
+    //Method creates an arraylist and multidimensional array from input file
     private void setLists(){
         try(Scanner inputStream = new Scanner(fileInput)){
             while(inputStream.hasNextLine()){
                 fileContents.add(inputStream.nextLine());
             }
+            //array split on |(pipe) character in file
             for(int i = 0; i < fileContents.size(); i++){
                 itemList[i] = fileContents.get(i).split("\\|");
             }
@@ -38,6 +40,7 @@ public class VendingInventory {
         }
     }
 
+    //Method stocks an arraylist of Items for use in CLI
     private void stockInventory(){
         for(int i = 0; i < itemList.length; i++) {
             if (itemList[i][3].equals("Candy")) {

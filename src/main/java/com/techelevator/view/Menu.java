@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Menu {
+	//Only real changes to this class were to add Current Funds to display and to hide 4th option
 
 	private PrintWriter out;
 	private Scanner in;
@@ -56,14 +57,18 @@ public class Menu {
 
 	private void displayMenuOptions(Object[] options) {
 		out.println();
-		for (int i = 0; i < options.length - 1; i++) {
+		for (int i = 0; i < options.length; i++) {
+			//Won't display any more than 3 options
+			if(i <= 2){
 			int optionNum = i + 1;
 			out.println(optionNum + ") " + options[i]);
+			}
 		}
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
 	}
 
+	//Only called in Purchase Menu
 	private void displayMenuOptions(Object[] options, BigDecimal currentMoney) {
 		System.out.println();
 		System.out.printf("Current Money Provided: $%.2f\n", currentMoney);
